@@ -1,0 +1,331 @@
+{
+  "frames": {
+    "fc_pooping_00046.png": {
+      "frame": { "x": 2, "y": 2, "w": 403, "h": 688 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 64, "y": 179, "w": 403, "h": 688 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00045.png": {
+      "frame": { "x": 407, "y": 2, "w": 396, "h": 687 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 71, "y": 180, "w": 396, "h": 687 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00044.png": {
+      "frame": { "x": 2, "y": 692, "w": 396, "h": 686 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 71, "y": 181, "w": 396, "h": 686 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00043.png": {
+      "frame": { "x": 805, "y": 2, "w": 396, "h": 686 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 71, "y": 181, "w": 396, "h": 686 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00042.png": {
+      "frame": { "x": 805, "y": 690, "w": 396, "h": 686 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 71, "y": 181, "w": 396, "h": 686 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00041.png": {
+      "frame": { "x": 2, "y": 1090, "w": 396, "h": 686 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 71, "y": 181, "w": 396, "h": 686 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00040.png": {
+      "frame": { "x": 1203, "y": 2, "w": 396, "h": 686 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 71, "y": 181, "w": 396, "h": 686 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00039.png": {
+      "frame": { "x": 1203, "y": 690, "w": 396, "h": 687 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 71, "y": 180, "w": 396, "h": 687 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00038.png": {
+      "frame": { "x": 2, "y": 1488, "w": 396, "h": 687 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 71, "y": 180, "w": 396, "h": 687 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00037.png": {
+      "frame": { "x": 691, "y": 1379, "w": 398, "h": 687 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 69, "y": 180, "w": 398, "h": 687 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00036.png": {
+      "frame": { "x": 1601, "y": 2, "w": 399, "h": 688 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 68, "y": 179, "w": 399, "h": 688 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00035.png": {
+      "frame": { "x": 2, "y": 1886, "w": 403, "h": 689 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 64, "y": 178, "w": 403, "h": 689 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00034.png": {
+      "frame": { "x": 693, "y": 1779, "w": 408, "h": 691 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 59, "y": 176, "w": 408, "h": 691 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00033.png": {
+      "frame": { "x": 1386, "y": 1379, "w": 411, "h": 695 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 56, "y": 172, "w": 411, "h": 695 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00032.png": {
+      "frame": { "x": 2002, "y": 2, "w": 404, "h": 697 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 63, "y": 170, "w": 404, "h": 697 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00031.png": {
+      "frame": { "x": 1601, "y": 701, "w": 382, "h": 699 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 85, "y": 168, "w": 382, "h": 699 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00025.png": {
+      "frame": { "x": 1799, "y": 1085, "w": 360, "h": 691 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 101, "y": 176, "w": 360, "h": 691 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00024.png": {
+      "frame": { "x": 2, "y": 2291, "w": 359, "h": 682 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 102, "y": 185, "w": 359, "h": 682 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00023.png": {
+      "frame": { "x": 693, "y": 2189, "w": 366, "h": 677 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 103, "y": 190, "w": 366, "h": 677 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00022.png": {
+      "frame": { "x": 1372, "y": 2189, "w": 413, "h": 678 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 99, "y": 189, "w": 413, "h": 678 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00021.png": {
+      "frame": { "x": 2408, "y": 2, "w": 444, "h": 710 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 11, "y": 157, "w": 444, "h": 710 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00020.png": {
+      "frame": { "x": 2052, "y": 1778, "w": 354, "h": 779 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 88, "w": 354, "h": 779 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00019.png": {
+      "frame": { "x": 2052, "y": 2134, "w": 354, "h": 779 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 88, "w": 354, "h": 779 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00017.png": {
+      "frame": { "x": 2302, "y": 714, "w": 347, "h": 424 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 171, "y": 4, "w": 347, "h": 424 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00016.png": {
+      "frame": { "x": 2302, "y": 1063, "w": 339, "h": 438 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 188, "y": 0, "w": 339, "h": 438 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00013.png": {
+      "frame": { "x": 2, "y": 2652, "w": 358, "h": 795 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 288, "y": 72, "w": 358, "h": 795 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00012.png": {
+      "frame": { "x": 799, "y": 2604, "w": 390, "h": 700 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 304, "y": 167, "w": 390, "h": 700 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00011.png": {
+      "frame": { "x": 2052, "y": 2490, "w": 422, "h": 559 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 321, "y": 308, "w": 422, "h": 559 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00010.png": {
+      "frame": { "x": 2854, "y": 2, "w": 423, "h": 571 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 319, "y": 296, "w": 423, "h": 571 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00009.png": {
+      "frame": { "x": 2854, "y": 575, "w": 423, "h": 588 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 319, "y": 279, "w": 423, "h": 588 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00008.png": {
+      "frame": { "x": 2742, "y": 1165, "w": 423, "h": 606 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 317, "y": 261, "w": 423, "h": 606 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00007.png": {
+      "frame": { "x": 2833, "y": 1773, "w": 422, "h": 627 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 317, "y": 240, "w": 422, "h": 627 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00006.png": {
+      "frame": { "x": 2613, "y": 2490, "w": 420, "h": 629 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 319, "y": 238, "w": 420, "h": 629 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00005.png": {
+      "frame": { "x": 2, "y": 3012, "w": 419, "h": 629 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 319, "y": 238, "w": 419, "h": 629 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00004.png": {
+      "frame": { "x": 633, "y": 3012, "w": 416, "h": 629 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 320, "y": 238, "w": 416, "h": 629 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00003.png": {
+      "frame": { "x": 1264, "y": 2996, "w": 410, "h": 629 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 324, "y": 238, "w": 410, "h": 629 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00002.png": {
+      "frame": { "x": 2613, "y": 2912, "w": 397, "h": 628 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 329, "y": 239, "w": 397, "h": 628 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00001.png": {
+      "frame": { "x": 1895, "y": 2914, "w": 368, "h": 628 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 344, "y": 239, "w": 368, "h": 628 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    },
+    "fc_pooping_00000.png": {
+      "frame": { "x": 3279, "y": 2, "w": 364, "h": 628 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 347, "y": 239, "w": 364, "h": 628 },
+      "sourceSize": { "w": 1067, "h": 867 }
+    }
+  },
+  "animations": {
+    "fc_pooping": [
+      "fc_pooping_00000.png",
+      "fc_pooping_00001.png",
+      "fc_pooping_00002.png",
+      "fc_pooping_00003.png",
+      "fc_pooping_00004.png",
+      "fc_pooping_00005.png",
+      "fc_pooping_00006.png",
+      "fc_pooping_00007.png",
+      "fc_pooping_00008.png",
+      "fc_pooping_00009.png",
+      "fc_pooping_00010.png",
+      "fc_pooping_00011.png",
+      "fc_pooping_00012.png",
+      "fc_pooping_00013.png",
+      "fc_pooping_00016.png",
+      "fc_pooping_00017.png",
+      "fc_pooping_00019.png",
+      "fc_pooping_00020.png",
+      "fc_pooping_00021.png",
+      "fc_pooping_00022.png",
+      "fc_pooping_00023.png",
+      "fc_pooping_00024.png",
+      "fc_pooping_00025.png",
+      "fc_pooping_00031.png",
+      "fc_pooping_00032.png",
+      "fc_pooping_00033.png",
+      "fc_pooping_00034.png",
+      "fc_pooping_00035.png",
+      "fc_pooping_00036.png",
+      "fc_pooping_00037.png",
+      "fc_pooping_00038.png",
+      "fc_pooping_00039.png",
+      "fc_pooping_00040.png",
+      "fc_pooping_00041.png",
+      "fc_pooping_00042.png",
+      "fc_pooping_00043.png",
+      "fc_pooping_00044.png",
+      "fc_pooping_00045.png",
+      "fc_pooping_00046.png"
+    ]
+  },
+  "meta": {
+    "app": "http://github.com/pixijs/assetpack",
+    "version": "1.0",
+    "image": "../../placeholder@2x.png",
+    "format": "RGBA8888",
+    "size": { "w": 4096, "h": 4096 },
+    "scale": 2,
+    "related_multi_packs": null,
+    "realImage": "fc_pooping-1@2x.webp",
+    "placeholderApplied": true
+  }
+}

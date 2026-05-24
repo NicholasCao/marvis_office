@@ -1,0 +1,787 @@
+{
+  "frames": {
+    "pooping_scarf_00095.png": {
+      "frame": { "x": 2, "y": 2, "w": 127, "h": 204 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 90, "w": 127, "h": 204 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00094.png": {
+      "frame": { "x": 131, "y": 2, "w": 137, "h": 215 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 91, "w": 137, "h": 215 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00093.png": {
+      "frame": { "x": 2, "y": 219, "w": 139, "h": 188 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 95, "w": 139, "h": 188 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00092.png": {
+      "frame": { "x": 270, "y": 2, "w": 140, "h": 205 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 102, "w": 140, "h": 205 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00091.png": {
+      "frame": { "x": 192, "y": 219, "w": 133, "h": 178 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 105, "w": 133, "h": 178 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00090.png": {
+      "frame": { "x": 2, "y": 360, "w": 124, "h": 195 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 111, "w": 124, "h": 195 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00089.png": {
+      "frame": { "x": 412, "y": 2, "w": 137, "h": 216 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 90, "w": 137, "h": 216 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00088.png": {
+      "frame": { "x": 199, "y": 354, "w": 115, "h": 194 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 111, "w": 115, "h": 194 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00087.png": {
+      "frame": { "x": 395, "y": 220, "w": 123, "h": 204 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 100, "w": 123, "h": 204 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00086.png": {
+      "frame": { "x": 2, "y": 486, "w": 126, "h": 209 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 93, "w": 126, "h": 209 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00085.png": {
+      "frame": { "x": 213, "y": 471, "w": 117, "h": 187 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 95, "w": 117, "h": 187 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00084.png": {
+      "frame": { "x": 551, "y": 2, "w": 117, "h": 189 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 90, "w": 117, "h": 189 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00083.png": {
+      "frame": { "x": 520, "y": 220, "w": 124, "h": 212 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 90, "w": 124, "h": 212 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00082.png": {
+      "frame": { "x": 402, "y": 434, "w": 124, "h": 198 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 105, "w": 124, "h": 198 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00081.png": {
+      "frame": { "x": 2, "y": 614, "w": 126, "h": 212 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 90, "w": 126, "h": 212 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00080.png": {
+      "frame": { "x": 216, "y": 590, "w": 123, "h": 212 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 91, "w": 123, "h": 212 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00079.png": {
+      "frame": { "x": 430, "y": 560, "w": 125, "h": 212 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 91, "w": 125, "h": 212 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00078.png": {
+      "frame": { "x": 670, "y": 2, "w": 123, "h": 207 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 91, "w": 123, "h": 207 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00077.png": {
+      "frame": { "x": 602, "y": 434, "w": 117, "h": 171 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 105, "w": 117, "h": 171 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00076.png": {
+      "frame": { "x": 646, "y": 211, "w": 120, "h": 216 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 89, "w": 120, "h": 216 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00075.png": {
+      "frame": { "x": 2, "y": 742, "w": 121, "h": 208 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 96, "w": 121, "h": 208 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00074.png": {
+      "frame": { "x": 212, "y": 742, "w": 118, "h": 209 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 97, "w": 118, "h": 209 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00073.png": {
+      "frame": { "x": 423, "y": 715, "w": 121, "h": 208 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 98, "w": 121, "h": 208 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00072.png": {
+      "frame": { "x": 644, "y": 553, "w": 123, "h": 213 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 93, "w": 123, "h": 213 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00071.png": {
+      "frame": { "x": 795, "y": 2, "w": 132, "h": 211 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 94, "w": 132, "h": 211 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00070.png": {
+      "frame": { "x": 768, "y": 215, "w": 118, "h": 214 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 90, "w": 118, "h": 214 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00069.png": {
+      "frame": { "x": 775, "y": 431, "w": 131, "h": 200 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 103, "w": 131, "h": 200 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00068.png": {
+      "frame": { "x": 769, "y": 633, "w": 117, "h": 204 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 103, "w": 117, "h": 204 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00067.png": {
+      "frame": { "x": 2, "y": 865, "w": 138, "h": 205 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 101, "w": 138, "h": 205 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00066.png": {
+      "frame": { "x": 209, "y": 865, "w": 136, "h": 208 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 98, "w": 136, "h": 208 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00065.png": {
+      "frame": { "x": 633, "y": 768, "w": 113, "h": 201 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 102, "w": 113, "h": 201 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00064.png": {
+      "frame": { "x": 423, "y": 838, "w": 121, "h": 206 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 99, "w": 121, "h": 206 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00063.png": {
+      "frame": { "x": 929, "y": 2, "w": 121, "h": 212 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 93, "w": 121, "h": 212 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00062.png": {
+      "frame": { "x": 888, "y": 216, "w": 121, "h": 208 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 97, "w": 121, "h": 208 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00061.png": {
+      "frame": { "x": 908, "y": 426, "w": 121, "h": 213 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 92, "w": 121, "h": 213 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00060.png": {
+      "frame": { "x": 888, "y": 641, "w": 121, "h": 213 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 92, "w": 121, "h": 213 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00059.png": {
+      "frame": { "x": 748, "y": 856, "w": 119, "h": 210 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 95, "w": 119, "h": 210 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00058.png": {
+      "frame": { "x": 2, "y": 1005, "w": 120, "h": 206 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 90, "y": 99, "w": 120, "h": 206 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00057.png": {
+      "frame": { "x": 210, "y": 1003, "w": 121, "h": 208 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 90, "y": 97, "w": 121, "h": 208 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00056.png": {
+      "frame": { "x": 420, "y": 961, "w": 123, "h": 210 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 90, "y": 95, "w": 123, "h": 210 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00055.png": {
+      "frame": { "x": 632, "y": 977, "w": 124, "h": 220 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 89, "y": 85, "w": 124, "h": 220 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00054.png": {
+      "frame": { "x": 1052, "y": 2, "w": 124, "h": 205 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 89, "y": 100, "w": 124, "h": 205 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00053.png": {
+      "frame": { "x": 1052, "y": 209, "w": 124, "h": 218 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 89, "y": 87, "w": 124, "h": 218 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00052.png": {
+      "frame": { "x": 1031, "y": 429, "w": 123, "h": 220 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 90, "y": 85, "w": 123, "h": 220 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00051.png": {
+      "frame": { "x": 960, "y": 856, "w": 121, "h": 211 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 90, "y": 94, "w": 121, "h": 211 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00050.png": {
+      "frame": { "x": 854, "y": 979, "w": 119, "h": 217 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 88, "w": 119, "h": 217 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00049.png": {
+      "frame": { "x": 2, "y": 1127, "w": 130, "h": 217 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 81, "y": 88, "w": 130, "h": 217 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00048.png": {
+      "frame": { "x": 1011, "y": 651, "w": 141, "h": 203 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 72, "y": 102, "w": 141, "h": 203 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00047.png": {
+      "frame": { "x": 221, "y": 1126, "w": 117, "h": 213 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 93, "y": 92, "w": 117, "h": 213 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00046.png": {
+      "frame": { "x": 436, "y": 1103, "w": 126, "h": 211 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 84, "y": 94, "w": 126, "h": 211 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00045.png": {
+      "frame": { "x": 649, "y": 1103, "w": 129, "h": 214 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 81, "y": 91, "w": 129, "h": 214 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00044.png": {
+      "frame": { "x": 865, "y": 1100, "w": 125, "h": 210 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 85, "y": 95, "w": 125, "h": 210 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00043.png": {
+      "frame": { "x": 1178, "y": 2, "w": 135, "h": 199 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 75, "y": 105, "w": 135, "h": 199 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00042.png": {
+      "frame": { "x": 1154, "y": 651, "w": 124, "h": 195 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 86, "y": 109, "w": 124, "h": 195 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00041.png": {
+      "frame": { "x": 1156, "y": 429, "w": 124, "h": 212 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 86, "y": 92, "w": 124, "h": 212 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00040.png": {
+      "frame": { "x": 1178, "y": 203, "w": 125, "h": 213 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 86, "y": 92, "w": 125, "h": 213 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00039.png": {
+      "frame": { "x": 1077, "y": 979, "w": 142, "h": 214 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 75, "y": 92, "w": 142, "h": 214 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00038.png": {
+      "frame": { "x": 2, "y": 1259, "w": 137, "h": 209 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 78, "y": 94, "w": 137, "h": 209 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00037.png": {
+      "frame": { "x": 213, "y": 1259, "w": 129, "h": 202 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 86, "y": 101, "w": 129, "h": 202 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00036.png": {
+      "frame": { "x": 436, "y": 1231, "w": 140, "h": 205 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 75, "y": 100, "w": 140, "h": 205 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00035.png": {
+      "frame": { "x": 1077, "y": 1123, "w": 116, "h": 216 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 94, "y": 89, "w": 116, "h": 216 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00034.png": {
+      "frame": { "x": 865, "y": 1227, "w": 146, "h": 210 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 69, "y": 95, "w": 146, "h": 210 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00033.png": {
+      "frame": { "x": 643, "y": 1234, "w": 128, "h": 218 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 82, "y": 87, "w": 128, "h": 218 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00032.png": {
+      "frame": { "x": 1077, "y": 1241, "w": 131, "h": 220 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 79, "y": 85, "w": 131, "h": 220 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00031.png": {
+      "frame": { "x": 1315, "y": 2, "w": 119, "h": 221 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 86, "y": 85, "w": 119, "h": 221 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00030.png": {
+      "frame": { "x": 1173, "y": 848, "w": 115, "h": 204 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 90, "y": 102, "w": 115, "h": 204 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00029.png": {
+      "frame": { "x": 1305, "y": 225, "w": 115, "h": 205 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 90, "y": 101, "w": 115, "h": 205 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00028.png": {
+      "frame": { "x": 1299, "y": 965, "w": 120, "h": 179 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 90, "y": 107, "w": 120, "h": 179 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00027.png": {
+      "frame": { "x": 1280, "y": 643, "w": 108, "h": 186 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 90, "y": 107, "w": 108, "h": 186 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00026.png": {
+      "frame": { "x": 1299, "y": 1146, "w": 121, "h": 218 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 90, "y": 87, "w": 121, "h": 218 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00025.png": {
+      "frame": { "x": 2, "y": 1398, "w": 119, "h": 215 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 89, "w": 119, "h": 215 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00024.png": {
+      "frame": { "x": 219, "y": 1390, "w": 124, "h": 193 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 91, "y": 114, "w": 124, "h": 193 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00023.png": {
+      "frame": { "x": 414, "y": 1390, "w": 121, "h": 210 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 92, "y": 96, "w": 121, "h": 210 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00022.png": {
+      "frame": { "x": 1282, "y": 432, "w": 134, "h": 207 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 94, "y": 96, "w": 134, "h": 207 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00021.png": {
+      "frame": { "x": 643, "y": 1364, "w": 146, "h": 169 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 69, "y": 89, "w": 146, "h": 169 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00020.png": {
+      "frame": { "x": 1436, "y": 2, "w": 163, "h": 168 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 59, "y": 58, "w": 163, "h": 168 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00019.png": {
+      "frame": { "x": 1422, "y": 225, "w": 168, "h": 172 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 53, "y": 53, "w": 168, "h": 172 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00018.png": {
+      "frame": { "x": 1422, "y": 395, "w": 155, "h": 184 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 81, "y": 21, "w": 155, "h": 184 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00017.png": {
+      "frame": { "x": 1422, "y": 581, "w": 173, "h": 165 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 85, "y": 17, "w": 173, "h": 165 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00016.png": {
+      "frame": { "x": 1422, "y": 748, "w": 159, "h": 190 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 98, "y": 16, "w": 159, "h": 190 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00015.png": {
+      "frame": { "x": 1421, "y": 940, "w": 150, "h": 204 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 109, "y": 18, "w": 150, "h": 204 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00014.png": {
+      "frame": { "x": 1299, "y": 1366, "w": 144, "h": 217 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 110, "y": 15, "w": 144, "h": 217 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00013.png": {
+      "frame": { "x": 814, "y": 1375, "w": 142, "h": 237 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 157, "y": 36, "w": 142, "h": 237 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00012.png": {
+      "frame": { "x": 1077, "y": 1374, "w": 143, "h": 220 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 161, "y": 96, "w": 143, "h": 220 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00011.png": {
+      "frame": { "x": 1422, "y": 1146, "w": 137, "h": 182 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 185, "y": 164, "w": 137, "h": 182 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00010.png": {
+      "frame": { "x": 1518, "y": 1330, "w": 88, "h": 53 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 227, "y": 225, "w": 88, "h": 53 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00009.png": {
+      "frame": { "x": 1436, "y": 172, "w": 87, "h": 50 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 229, "y": 222, "w": 87, "h": 50 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00008.png": {
+      "frame": { "x": 1518, "y": 1420, "w": 86, "h": 47 },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 231, "y": 218, "w": 86, "h": 47 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00007.png": {
+      "frame": { "x": 2, "y": 1519, "w": 86, "h": 46 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 233, "y": 211, "w": 86, "h": 46 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00006.png": {
+      "frame": { "x": 219, "y": 1516, "w": 85, "h": 47 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 233, "y": 210, "w": 85, "h": 47 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00005.png": {
+      "frame": { "x": 306, "y": 1516, "w": 87, "h": 47 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 233, "y": 210, "w": 87, "h": 47 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00004.png": {
+      "frame": { "x": 395, "y": 1516, "w": 85, "h": 47 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 233, "y": 210, "w": 85, "h": 47 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00003.png": {
+      "frame": { "x": 482, "y": 1513, "w": 87, "h": 47 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 233, "y": 210, "w": 87, "h": 47 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00002.png": {
+      "frame": { "x": 571, "y": 1513, "w": 86, "h": 47 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 232, "y": 210, "w": 86, "h": 47 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00001.png": {
+      "frame": { "x": 90, "y": 1519, "w": 85, "h": 46 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 232, "y": 211, "w": 85, "h": 46 },
+      "sourceSize": { "w": 534, "h": 434 }
+    },
+    "pooping_scarf_00000.png": {
+      "frame": { "x": 2, "y": 1567, "w": 119, "h": 119 },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": { "x": 198, "y": 164, "w": 119, "h": 119 },
+      "sourceSize": { "w": 534, "h": 434 }
+    }
+  },
+  "animations": {
+    "pooping_scarf": [
+      "pooping_scarf_00000.png",
+      "pooping_scarf_00001.png",
+      "pooping_scarf_00002.png",
+      "pooping_scarf_00003.png",
+      "pooping_scarf_00004.png",
+      "pooping_scarf_00005.png",
+      "pooping_scarf_00006.png",
+      "pooping_scarf_00007.png",
+      "pooping_scarf_00008.png",
+      "pooping_scarf_00009.png",
+      "pooping_scarf_00010.png",
+      "pooping_scarf_00011.png",
+      "pooping_scarf_00012.png",
+      "pooping_scarf_00013.png",
+      "pooping_scarf_00014.png",
+      "pooping_scarf_00015.png",
+      "pooping_scarf_00016.png",
+      "pooping_scarf_00017.png",
+      "pooping_scarf_00018.png",
+      "pooping_scarf_00019.png",
+      "pooping_scarf_00020.png",
+      "pooping_scarf_00021.png",
+      "pooping_scarf_00022.png",
+      "pooping_scarf_00023.png",
+      "pooping_scarf_00024.png",
+      "pooping_scarf_00025.png",
+      "pooping_scarf_00026.png",
+      "pooping_scarf_00027.png",
+      "pooping_scarf_00028.png",
+      "pooping_scarf_00029.png",
+      "pooping_scarf_00030.png",
+      "pooping_scarf_00031.png",
+      "pooping_scarf_00032.png",
+      "pooping_scarf_00033.png",
+      "pooping_scarf_00034.png",
+      "pooping_scarf_00035.png",
+      "pooping_scarf_00036.png",
+      "pooping_scarf_00037.png",
+      "pooping_scarf_00038.png",
+      "pooping_scarf_00039.png",
+      "pooping_scarf_00040.png",
+      "pooping_scarf_00041.png",
+      "pooping_scarf_00042.png",
+      "pooping_scarf_00043.png",
+      "pooping_scarf_00044.png",
+      "pooping_scarf_00045.png",
+      "pooping_scarf_00046.png",
+      "pooping_scarf_00047.png",
+      "pooping_scarf_00048.png",
+      "pooping_scarf_00049.png",
+      "pooping_scarf_00050.png",
+      "pooping_scarf_00051.png",
+      "pooping_scarf_00052.png",
+      "pooping_scarf_00053.png",
+      "pooping_scarf_00054.png",
+      "pooping_scarf_00055.png",
+      "pooping_scarf_00056.png",
+      "pooping_scarf_00057.png",
+      "pooping_scarf_00058.png",
+      "pooping_scarf_00059.png",
+      "pooping_scarf_00060.png",
+      "pooping_scarf_00061.png",
+      "pooping_scarf_00062.png",
+      "pooping_scarf_00063.png",
+      "pooping_scarf_00064.png",
+      "pooping_scarf_00065.png",
+      "pooping_scarf_00066.png",
+      "pooping_scarf_00067.png",
+      "pooping_scarf_00068.png",
+      "pooping_scarf_00069.png",
+      "pooping_scarf_00070.png",
+      "pooping_scarf_00071.png",
+      "pooping_scarf_00072.png",
+      "pooping_scarf_00073.png",
+      "pooping_scarf_00074.png",
+      "pooping_scarf_00075.png",
+      "pooping_scarf_00076.png",
+      "pooping_scarf_00077.png",
+      "pooping_scarf_00078.png",
+      "pooping_scarf_00079.png",
+      "pooping_scarf_00080.png",
+      "pooping_scarf_00081.png",
+      "pooping_scarf_00082.png",
+      "pooping_scarf_00083.png",
+      "pooping_scarf_00084.png",
+      "pooping_scarf_00085.png",
+      "pooping_scarf_00086.png",
+      "pooping_scarf_00087.png",
+      "pooping_scarf_00088.png",
+      "pooping_scarf_00089.png",
+      "pooping_scarf_00090.png",
+      "pooping_scarf_00091.png",
+      "pooping_scarf_00092.png",
+      "pooping_scarf_00093.png",
+      "pooping_scarf_00094.png",
+      "pooping_scarf_00095.png"
+    ]
+  },
+  "meta": {
+    "app": "http://github.com/pixijs/assetpack",
+    "version": "1.0",
+    "image": "../../placeholder@2x.png",
+    "format": "RGBA8888",
+    "size": { "w": 2048, "h": 2048 },
+    "scale": 1,
+    "related_multi_packs": [],
+    "realImage": "pooping_scarf.webp",
+    "placeholderApplied": true
+  }
+}

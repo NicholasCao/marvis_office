@@ -1,0 +1,2 @@
+const e=()=>"",s={format:e,toString:e,toJSON:e,valueOf:()=>0,[Symbol.toPrimitive]:()=>0},r={then:(a)=>{a&&a(s);return r},catch:e,finally:e,format:e,toString:e,toJSON:e,valueOf:()=>0,[Symbol.toPrimitive]:()=>0,[Symbol.iterator]:()=>[][Symbol.iterator]()},h={get:(t,k)=>k in r?r[k]:typeof k==="symbol"?void 0:new Proxy(function(){},h),apply:()=>r,construct:()=>new Proxy({},h)},p=new Proxy(function(){},h);export{p};
+

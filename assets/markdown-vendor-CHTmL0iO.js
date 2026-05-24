@@ -1,0 +1,3 @@
+const _=function(cb){return cb()};const e=()=>"",s={format:e,toString:e,toJSON:e,valueOf:()=>0,[Symbol.toPrimitive]:()=>0},r={then:(a)=>{a&&a(s);return r},catch:e,finally:e,format:e,toString:e,toJSON:e,valueOf:()=>0,[Symbol.toPrimitive]:()=>0,[Symbol.iterator]:()=>[][Symbol.iterator]()},h={get:(t,k)=>k in r?r[k]:typeof k==="symbol"?void 0:new Proxy(function(){},h),apply:()=>r,construct:()=>new Proxy({},h)},p=new Proxy(function(){},h);export{_,p as d,p as a,p as k,p as m,p as o,p as V,p as b,p as s,p as u,p as P,p as c,p as e,p as g,p as i,p as j,p as l,p as n,p as I,p as f,p as h,p as A,p as G,p as R,p as T,p as q};
+
+
