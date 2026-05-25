@@ -237,6 +237,60 @@
         if (idleDecisionOriginal) { scene.taskSystem.idleDecision.canRunDecision = idleDecisionOriginal; idleDecisionOriginal = null; }
       },
 
+      // Behavior actions
+      action: function (name, behavior, opts) {
+        var agent = findAgent(name);
+        var idle = scene.taskSystem.idleDecision;
+        var ctx = idle.contexts.get(agent);
+        var prev = ctx ? ctx.currentAction : null;
+        if (prev) idle.exitAction(agent, prev);
+        idle.contexts.delete(agent);
+        idle.pendingInitialDecisions && idle.pendingInitialDecisions.delete(agent);
+        idle.pendingDelayedDecisions && idle.pendingDelayedDecisions.delete(agent);
+
+        switch (behavior) {
+          case 'sleep': idle.enterSleep(agent); break;
+          case 'slacking': idle.enterSlacking(agent); break;
+          case 'treadmill': idle.enterTreadmill(agent); break;
+          case 'toilet': idle.enterToilet(agent); break;
+          case 'leave': idle.startLeaving(agent); break;
+          case 'talk':
+            var targetName = opts && opts.target;
+            if (targetName) {
+              var target = findAgent(targetName);
+              var origFind = idle.findTalkTargets.bind(idle);
+              idle.findTalkTargets = function () { return [target]; };
+              idle.enterTalk(agent);
+              idle.findTalkTargets = origFind;
+            } else {
+              idle.enterTalk(agent);
+            }
+            break;
+          case 'enter':
+            if (agent._stateCategory === 'OFFSTAGE' || !agent.displayContainer.visible) {
+              agent.teleportTo(agent.seatX, agent.seatY);
+              agent.displayContainer.visible = true;
+              agent.isInWorkstation = true;
+              scene.pathfinding.setOccupant(agent.agentType, agent._x, agent._y);
+              agent.setStateCategory('IDLE', 'ENTERING');
+              agent.playSubStateAnim('fall_down', false);
+            }
+            break;
+          case 'cheer':
+            idle.highPriorityHandler.playCheerAnim(agent);
+            break;
+          default: throw new Error('Unknown behavior: ' + behavior);
+        }
+      },
+      sleep: function (name) { this.action(name, 'sleep'); },
+      slacking: function (name) { this.action(name, 'slacking'); },
+      treadmill: function (name) { this.action(name, 'treadmill'); },
+      toilet: function (name) { this.action(name, 'toilet'); },
+      leave: function (name) { this.action(name, 'leave'); },
+      enter: function (name) { this.action(name, 'enter'); },
+      cheer: function (name) { this.action(name, 'cheer'); },
+      talk: function (name, target) { this.action(name, 'talk', { target: target }); },
+
       // Name label control
       hideNames: function () {
         var nls = scene.nameLabelSystem;
