@@ -11,20 +11,77 @@ python3 server.py
 
 ## 自定义 Agent 初始化
 
-### 核心限制：type 是固定的
+### Type 说明
 
-Agent 的 `type` 必须使用以下 6 个内置值之一，**不能自定义新 type**：
+`"main"` 是主角（始终在场，不离场），其余 type 均为子 Agent（参与随机行为、离场/入场）。
 
-| type 值 | 角色 | 行为特征 |
-|---------|------|---------|
-| `"main"` | 主角（slot 0） | 始终在场，不会离场，不参与随机闲逛 |
-| `"App Agent"` | 子 Agent | 会随机离场/入场，参与 idle 决策 |
-| `"Computer Agent"` | 子 Agent | 同上 |
-| `"Browser Agent"` | 子 Agent | 同上 |
-| `"File Agent"` | 子 Agent | 同上 |
-| `"Search Agent"` | 子 Agent | 同上 |
+当前已注册的 type：
 
-**原因**：type 深度绑定在场景逻辑中——idle 决策、任务派发、动画映射、离场判断都通过 type 做硬编码分支。传入未知 type 不会报错，但 agent 不会被正确初始化到场景中（不参与 idle、不会上跑步机、不会被 talk 邀请等）。
+| type 值 | 角色 | 备注 |
+|---------|------|------|
+| `"main"` | 主角（slot 0） | 始终在场 |
+| `"App Agent"` | 子 Agent | 内置 |
+| `"Computer Agent"` | 子 Agent | 内置 |
+| `"Browser Agent"` | 子 Agent | 内置 |
+| `"File Agent"` | 子 Agent | 内置 |
+| `"Search Agent"` | 子 Agent | 内置 |
+| `"Marketing Agent"` | 子 Agent | 自定义 |
+| `"Verify Agent"` | 子 Agent | 自定义 |
+| `"Design Agent"` | 子 Agent | 自定义 |
+| `"KOL Agent"` | 子 Agent | 自定义 |
+| `"Engineering Agent"` | 子 Agent | 自定义 |
+| `"Monitoring Agent"` | 子 Agent | 自定义 |
+
+### 新增自定义 Agent Type 步骤
+
+如需新增更多 type，需改动 3 处：
+
+**1. 生成名称标签图片**
+
+修改 `tools/gen_name_sprites.py` 中的 `NEW_NAMES` 字典，添加新 type：
+
+```python
+NEW_NAMES = {
+    "main":               "Elon",      # 覆盖原有 main 的标签
+    "Marketing Agent":    "Mark",
+    "Your New Agent":     "显示名",    # ← 新增
+}
+```
+
+然后运行：
+```bash
+python3 tools/gen_name_sprites.py
+```
+
+脚本会在 `agent@2x.webp` spritesheet 里追加 `name_Your New Agent.png` frame。
+
+**2. 注册到初始在场候选列表**
+
+编辑 `assets/index-wSLjxAso.js`，搜索 `sEt`（约 line 32294），在数组中添加新 type：
+
+```js
+var sEt = [
+    Wo.app,
+    Wo.file,
+    Wo.computer,
+    Wo.browser,
+    "Marketing Agent",
+    // ...
+    "Your New Agent"    // ← 新增
+]
+```
+
+**3. 在 custom.html 中使用**
+
+```js
+window.__OFFICE_AGENTS = [
+  { name: "Boss", type: "main", description: "...", color: 0xFF6600 },
+  { name: "xxx", type: "Your New Agent", description: "...", color: 0x00FF00 },
+  // ...
+];
+```
+
+> 注意：type="main" 的 agent 必须恰好 1 个，且放在第一位。其余 type 名称完全自由，只需 3 处保持一致。
 
 ### 可自定义的部分
 
