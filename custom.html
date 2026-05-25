@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" data-framework="browser" data-os="macos">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Custom Office</title>
+  <script>
+    window.__RUNTIME_FRAMEWORK__ = 'browser';
+    window.__RUNTIME_OS__ = 'macos';
+
+    // 自定义 Agent 列表（必须在 bypass.js 之前）
+    window.__OFFICE_AGENTS = [
+      { name: "队长",    type: "main",           description: "项目总指挥", color: 0xFF6600 },
+      { name: "前端",    type: "Browser Agent",  description: "前端开发",   color: 0x00AAFF },
+      { name: "后端",    type: "Computer Agent", description: "后端开发",   color: 0x66FF00 }
+    ];
+
+    // 自定义点击 Agent 弹出的卡片信息
+    window.__AGENT_CARDS = {
+      "Main Agent":      { name: "队长", subtitle: "Project Leader", description: "全栈架构师，负责任务分发和代码审查", skills: ["任务分派", "代码审查", "架构设计"] },
+      "Browser Agent":   { name: "前端", subtitle: "Frontend Dev",   description: "精通 React/Vue，负责 UI 开发",   skills: ["React", "CSS", "TypeScript"] },
+      "Computer Agent":  { name: "后端", subtitle: "Backend Dev",    description: "负责 API 和数据库",              skills: ["Node.js", "PostgreSQL", "Redis"] }
+    };
+  </script>
+  <script src="./bypass.js"></script>
+  <script type="module" crossorigin src="./assets/index-wSLjxAso.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/react-vendor-Bcb6ewdu.js">
+  <link rel="modulepreload" crossorigin href="./assets/utils-vendor-D8_MVJCX.js">
+  <link rel="stylesheet" crossorigin href="./assets/index-DLJb5NgS.css">
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>

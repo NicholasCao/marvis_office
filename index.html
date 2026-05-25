@@ -1,22 +1,12 @@
 <!doctype html>
-<html lang="en">
-
+<html lang="en" data-framework="browser" data-os="macos">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Marvis</title>
+  <title>Marvis Office</title>
   <script>
-    (function () {
-      var ua = navigator.userAgent;
-      var platform = navigator.platform;
-      var framework = /CefView/i.test(ua) ? 'cef' : /Electron/i.test(ua) ? 'electron' : 'browser';
-      var os = /Win32|Windows/i.test(platform) ? 'windows' : /MacIntel|MacPPC/i.test(platform) ? 'macos' : 'linux';
-      window.__RUNTIME_FRAMEWORK__ = framework;
-      window.__RUNTIME_OS__ = os;
-      var root = document.documentElement;
-      root.dataset.framework = framework;
-      root.dataset.os = os;
-    })();
+    window.__RUNTIME_FRAMEWORK__ = 'browser';
+    window.__RUNTIME_OS__ = /Mac/.test(navigator.platform) ? 'macos' : /Win/.test(navigator.platform) ? 'windows' : 'linux';
   </script>
   <script src="./bypass.js"></script>
   <script type="module" crossorigin src="./assets/index-wSLjxAso.js"></script>
@@ -24,9 +14,7 @@
   <link rel="modulepreload" crossorigin href="./assets/utils-vendor-D8_MVJCX.js">
   <link rel="stylesheet" crossorigin href="./assets/index-DLJb5NgS.css">
 </head>
-
 <body>
   <div id="root"></div>
 </body>
-
 </html>

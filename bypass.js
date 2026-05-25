@@ -1,233 +1,127 @@
-/**
- * Bypass script: mocks native bridge APIs and login state
- * so the app can render the officeDashboard without auth.
- */
 (function () {
   'use strict';
 
-  // 0. Stub globals that the main bundle expects
+  // Track all setInterval IDs for cleanup after scene loads
+  var _intervals = [];
+  var _origSetInterval = window.setInterval;
+  window.setInterval = function () {
+    var id = _origSetInterval.apply(window, arguments);
+    _intervals.push(id);
+    return id;
+  };
+
+  // Stub globals expected by main bundle
   window.__XIAOBAO_AGENT_CSS__ = '';
   window.jsRunningPerformanceNowResult = Date.now();
 
-  // 0b. Suppress non-critical errors and warnings
-  window.addEventListener('unhandledrejection', function(e) {
-    var msg = String(e.reason);
-    if (msg.includes('toJSON') || msg.includes('usePreview') || msg.includes('removeChild')) {
-      e.preventDefault();
-    }
+  // Suppress noisy console messages from mocked subsystems
+  var suppressRe = /toJSON|usePreview|privilege|getReminderNotice|usePrivilegeRequest|ScheduledTask|connection 不可用|TokenAdapter|WeixinStore|refreshApps|image load error|useReminderNotice/;
+  var origWarn = console.warn, origError = console.error;
+  console.warn = function () { if (!suppressRe.test(Array.prototype.join.call(arguments, ' '))) origWarn.apply(console, arguments); };
+  console.error = function () { if (!suppressRe.test(Array.prototype.join.call(arguments, ' '))) origError.apply(console, arguments); };
+  window.addEventListener('unhandledrejection', function (e) {
+    if (/toJSON|usePreview|removeChild/.test(String(e.reason))) e.preventDefault();
   });
-  var origWarn = console.warn;
-  var origError = console.error;
-  var suppressPatterns = ['toJSON', 'usePreview', 'privilege', 'getReminderNotice', 'usePrivilegeRequest', 'ScheduledTask', 'connection 不可用', 'TokenAdapter', 'WeixinStore', 'refreshApps', 'image load error', 'useReminderNotice'];
-  function isSuppressed(args) {
-    var s = Array.prototype.join.call(args, ' ');
-    for (var i = 0; i < suppressPatterns.length; i++) {
-      if (s.includes(suppressPatterns[i])) return true;
-    }
-    return false;
-  }
-  console.warn = function () { if (!isSuppressed(arguments)) origWarn.apply(console, arguments); };
-  console.error = function () { if (!isSuppressed(arguments)) origError.apply(console, arguments); };
 
-  // 1. Mock login cookies — the app reads logintype/openid/accesstoken from cookies
-  document.cookie = 'logintype=mock; path=/';
-  document.cookie = 'openid=mock_user_001; path=/';
-  document.cookie = 'accesstoken=mock_token_abc; path=/';
-  document.cookie = 'refreshtoken=mock_refresh; path=/';
-  document.cookie = 'nickname=MockUser; path=/';
-  document.cookie = 'scope=all; path=/';
-  document.cookie = 'access_token_expire_time=' + (Math.floor(Date.now() / 1000) + 86400) + '; path=/';
+  // Mock login cookies
+  ['logintype=mock', 'openid=mock_user_001', 'accesstoken=mock_token_abc',
+   'refreshtoken=mock_refresh', 'nickname=MockUser', 'scope=all',
+   'access_token_expire_time=' + (Math.floor(Date.now() / 1000) + 86400)
+  ].forEach(function (c) { document.cookie = c + '; path=/'; });
 
-  // 2. Mock envInfo in localStorage (used by multiple components)
+  // Mock localStorage envInfo
   localStorage.setItem('envInfo', JSON.stringify({
-    guid: 'mock-guid-12345',
-    physical_memory: 32,
-    os: 'macOS',
-    os_version: '14.0',
-    app_version: '4.0.0',
+    guid: 'mock-guid-12345', physical_memory: 32, os: 'macOS', os_version: '14.0', app_version: '4.0.0'
   }));
 
-  function logBypass(msg) {
-    console.log('[bypass] ' + msg);
-  }
-
-  // 2a. Hide sidebar, top bar, right panel — office-only layout
-  var cssText =
-    '[class*="_sidebar_3vz2u"] { display: none !important; }' +
-    '[class*="_operationBar_3kjbu"] { display: none !important; }' +
-    '[class*="_rightPanel_xk3qg"] { display: none !important; }' +
-    '[class*="_mainContent_xk3qg"] { flex: 1 !important; }' +
-    '[class*="_errorBoundary_114qa"] { display: none !important; }' +
-    '[class*="_loadingContent_1wtsy"] { display: none !important; }';
-  function injectStyle() {
-    var style = document.createElement('style');
-    style.textContent = cssText;
-    (document.head || document.documentElement).appendChild(style);
-  }
-  injectStyle();
-  document.addEventListener('DOMContentLoaded', injectStyle);
-
-  // 2b. Skip cold-start checker (it verifies gateway/agent/kb connections)
+  // Skip cold-start checker
   sessionStorage.setItem('ai-launcher_startCheckerPassed', JSON.stringify({ expiredTime: 0, val: true }));
 
-  // 2c. Override IntersectionObserver to always report visible
-  // The workbench uses this to detect when its canvas enters viewport
-  var OriginalIntersectionObserver = window.IntersectionObserver;
-  window.IntersectionObserver = function (callback, options) {
-    var observer = {
-      root: (options && options.root) || null,
-      rootMargin: (options && options.rootMargin) || '0px',
-      thresholds: (options && options.threshold) ? [].concat(options.threshold) : [0],
+  // CSS: hide sidebar/topbar/rightPanel, keep only office canvas
+  var style = document.createElement('style');
+  style.textContent =
+    '[class*="_sidebar_3vz2u"]{display:none!important}' +
+    '[class*="_operationBar_3kjbu"]{display:none!important}' +
+    '[class*="_rightPanel_xk3qg"]{display:none!important}' +
+    '[class*="_mainContent_xk3qg"]{flex:1!important}' +
+    '[class*="_errorBoundary_114qa"]{display:none!important}' +
+    '[class*="_loadingContent_1wtsy"]{display:none!important}';
+  (document.head || document.documentElement).appendChild(style);
+
+  // IntersectionObserver override — always report visible so canvas initializes
+  window.IntersectionObserver = function (callback) {
+    var obs = {
       observe: function (target) {
-        // Immediately report as fully visible
         setTimeout(function () {
-          callback([{
-            target: target,
-            isIntersecting: true,
-            intersectionRatio: 1.0,
-            boundingClientRect: target.getBoundingClientRect ? target.getBoundingClientRect() : {},
-            intersectionRect: target.getBoundingClientRect ? target.getBoundingClientRect() : {},
-            rootBounds: null,
-            time: performance.now()
-          }], observer);
+          callback([{ target: target, isIntersecting: true, intersectionRatio: 1.0,
+            boundingClientRect: target.getBoundingClientRect(), intersectionRect: target.getBoundingClientRect(),
+            rootBounds: null, time: performance.now() }], obs);
         }, 50);
       },
-      unobserve: function () { },
-      disconnect: function () { },
+      unobserve: function () {},
+      disconnect: function () {},
       takeRecords: function () { return []; }
     };
-    return observer;
+    return obs;
   };
-  window.IntersectionObserver.prototype = OriginalIntersectionObserver ? OriginalIntersectionObserver.prototype : {};
 
-  // 3. Mock native bridge (Jsbridge / handler pattern)
-  // The app calls En.checkHasApi which checks window.Jsbridge.handler
-  var noopAsync = function () {
-    return Promise.resolve({ code: 0, data: '{}' });
-  };
-  var noopHandler = new Proxy({}, {
-    get: function () {
-      return noopAsync;
-    }
-  });
-
+  // Mock native bridge (Jsbridge)
+  var noop = function () { return Promise.resolve({ code: 0, data: '{}' }); };
+  var proxyHandler = { get: function () { return noop; } };
   window.Jsbridge = new Proxy({}, {
-    get: function (target, prop) {
-      if (prop === 'handler') return noopHandler;
-      if (prop === 'invoke') return noopAsync;
-      if (prop === 'on') return function () { };
-      if (prop === 'off') return function () { };
-      return noopHandler;
+    get: function (_, prop) {
+      if (prop === 'handler' || prop === 'invoke') return prop === 'invoke' ? noop : new Proxy({}, proxyHandler);
+      if (prop === 'on' || prop === 'off') return function () {};
+      return new Proxy({}, proxyHandler);
     }
   });
-
-  // Also mock the module-style bridge check
   window.__NATIVE_BRIDGE_READY__ = true;
 
-  // 4. After app renders, navigate to officeDashboard
+  // Route to /officeDashboard once store is ready
   var navigated = false;
-  var attemptNavigate = function () {
-    if (navigated) return;
-    // The app exposes __STORE_STATE__ and __TAB_ROUTERS__ on window
-    if (window.__TAB_ROUTERS__ && window.__STORE_STATE__) {
-      try {
-        var state = window.__STORE_STATE__();
-        var activeTabId = state.tab.activeTabId;
-        var router = window.__TAB_ROUTERS__.get(activeTabId);
-        if (router && router.navigate) {
-          router.navigate('/officeDashboard');
-          navigated = true;
-          console.log('[bypass] Navigated to /officeDashboard');
-          return;
-        }
-      } catch (e) {
-        console.warn('[bypass] Navigate attempt failed:', e);
+  var bootPoll = setInterval(function () {
+    if (navigated) { clearInterval(bootPoll); return; }
+    if (!window.__TAB_ROUTERS__ || !window.__STORE_STATE__) return;
+    try {
+      var state = window.__STORE_STATE__();
+      var router = window.__TAB_ROUTERS__.get(state.tab.activeTabId);
+      if (router && router.navigate) {
+        router.navigate('/officeDashboard');
+        navigated = true;
+        clearInterval(bootPoll);
       }
-    }
-  };
-
-  // Poll until the store is ready (app init is async)
-  var pollCount = 0;
-  var pollInterval = setInterval(function () {
-    attemptNavigate();
-    pollCount++;
-    if (navigated || pollCount > 100) {
-      clearInterval(pollInterval);
-    }
+    } catch (e) {}
   }, 100);
+  // Safety: stop polling after 10s
+  setTimeout(function () { clearInterval(bootPoll); }, 10000);
 
-  // 5. Mock fetch for API calls that would fail without server
+  // Mock fetch — block external APIs, mock internal APIs
   var originalFetch = window.fetch;
   window.fetch = function (url, options) {
-    var urlStr = typeof url === 'string' ? url : (url && url.url ? url.url : '');
-
-    function mockJsonResponse(body) {
-      var json = typeof body === 'string' ? body : JSON.stringify(body);
-      var resp = new Response(json, { status: 200, headers: { 'Content-Type': 'application/json' } });
-      if (!resp.headers.toJSON) {
-        resp.headers.toJSON = function () {
-          var obj = {};
-          resp.headers.forEach(function (v, k) { obj[k] = v; });
-          return obj;
-        };
-      }
-      return Promise.resolve(resp);
-    }
-
-    // Block external URLs that cause CORS errors
-    if (urlStr.includes('qq.com') || urlStr.includes('ailauncher') || urlStr.includes('beacon')) {
-      return mockJsonResponse({});
-    }
-
-    // Mock session list API
-    if (urlStr.includes('/api/') || urlStr.includes('/v3/')) {
-      return mockJsonResponse({ code: 0, data: { list: [], total: 0, hasMore: false }, ok: true });
-    }
-
-    // Mock websocket/engine.io polling
-    if (urlStr.includes('/engine.io') || urlStr.includes('/socket.io')) {
-      return mockJsonResponse({});
-    }
-
-    // Force no-cache for workbench assets to prevent stale cache responses
-    if (urlStr.includes('/workbench/')) {
-      var newOpts = Object.assign({}, options || {}, { cache: 'no-store' });
-      return originalFetch.call(this, url, newOpts);
-    }
-
+    var s = typeof url === 'string' ? url : (url && url.url || '');
+    if (/qq\.com|ailauncher|beacon/.test(s)) return Promise.resolve(new Response('{}', { status: 200, headers: { 'Content-Type': 'application/json' } }));
+    if (/\/api\/|\/v3\//.test(s)) return Promise.resolve(new Response(JSON.stringify({ code: 0, data: { list: [], total: 0, hasMore: false }, ok: true }), { status: 200, headers: { 'Content-Type': 'application/json' } }));
+    if (/engine\.io|socket\.io/.test(s)) return Promise.resolve(new Response('{}', { status: 200, headers: { 'Content-Type': 'application/json' } }));
+    if (s.includes('/workbench/')) return originalFetch.call(this, url, Object.assign({}, options || {}, { cache: 'no-store' }));
     return originalFetch.apply(this, arguments);
   };
 
-  // 5b. Mock XMLHttpRequest for backend calls
-  // Aegis SDK overwrites XMLHttpRequest.prototype.send after us,
-  // so we must freeze blocked XHRs in open() — not wait for send().
-  var OriginalXHR = window.XMLHttpRequest;
-  function shouldBlockXHR(url) {
-    var s = String(url);
-    if ((s.includes('localhost') || s.includes('127.0.0.1')) && !s.includes('localhost:5175')) return true;
-    if (s.includes('ailauncher') || s.includes('beacon') || s.includes('qq.com')) return true;
-    return false;
-  }
+  // Mock XMLHttpRequest — block external/backend calls
+  var OrigXHR = window.XMLHttpRequest;
   window.XMLHttpRequest = function () {
-    var xhr = new OriginalXHR();
+    var xhr = new OrigXHR();
     var origOpen = xhr.open;
     xhr.open = function (method, url) {
-      if (shouldBlockXHR(url)) {
+      var s = String(url);
+      if ((/localhost|127\.0\.0\.1/.test(s) && !s.includes('localhost:5175')) || /ailauncher|beacon|qq\.com/.test(s)) {
         xhr._blocked = true;
-        var mockBody = '{"code":0,"data":{}}';
         Object.defineProperty(xhr, 'status', { configurable: true, get: function () { return 200; } });
         Object.defineProperty(xhr, 'readyState', { configurable: true, get: function () { return 4; } });
-        Object.defineProperty(xhr, 'responseText', { configurable: true, get: function () { return mockBody; } });
-        Object.defineProperty(xhr, 'response', { configurable: true, get: function () { return mockBody; } });
+        Object.defineProperty(xhr, 'responseText', { configurable: true, get: function () { return '{"code":0,"data":{}}'; } });
+        Object.defineProperty(xhr, 'response', { configurable: true, get: function () { return '{"code":0,"data":{}}'; } });
         xhr.getAllResponseHeaders = function () { return 'content-type: application/json\r\n'; };
         xhr.getResponseHeader = function (h) { return h.toLowerCase() === 'content-type' ? 'application/json' : null; };
-        xhr.send = function () {
-          var self = this;
-          setTimeout(function () {
-            if (self.onreadystatechange) self.onreadystatechange();
-            if (self.onload) self.onload();
-          }, 0);
-        };
+        xhr.send = function () { var self = this; setTimeout(function () { if (self.onreadystatechange) self.onreadystatechange(); if (self.onload) self.onload(); }, 0); };
         xhr.abort = function () {};
         return;
       }
@@ -235,134 +129,71 @@
     };
     return xhr;
   };
-  window.XMLHttpRequest.prototype = OriginalXHR.prototype;
+  window.XMLHttpRequest.prototype = OrigXHR.prototype;
 
-  // 6. Mock WebSocket to prevent connection errors
-  var OriginalWebSocket = window.WebSocket;
-  window.WebSocket = function (url, protocols) {
-    console.log('[bypass] WebSocket blocked:', url);
-    var ws = {
-      url: url,
-      readyState: 1,
-      send: function () { },
-      close: function () { this.readyState = 3; },
-      addEventListener: function () { },
-      removeEventListener: function () { },
-      onopen: null,
-      onclose: null,
-      onmessage: null,
-      onerror: null
-    };
-    // Simulate open event
-    setTimeout(function () {
-      if (ws.onopen) ws.onopen({ type: 'open' });
-    }, 0);
+  // Mock WebSocket
+  window.WebSocket = function (url) {
+    var ws = { url: url, readyState: 1, send: function () {}, close: function () { this.readyState = 3; },
+      addEventListener: function () {}, removeEventListener: function () {}, onopen: null, onclose: null, onmessage: null, onerror: null };
+    setTimeout(function () { if (ws.onopen) ws.onopen({ type: 'open' }); }, 0);
     return ws;
   };
-  window.WebSocket.CONNECTING = 0;
-  window.WebSocket.OPEN = 1;
-  window.WebSocket.CLOSING = 2;
-  window.WebSocket.CLOSED = 3;
+  window.WebSocket.CONNECTING = 0; window.WebSocket.OPEN = 1; window.WebSocket.CLOSING = 2; window.WebSocket.CLOSED = 3;
 
-  // 7. Mock gateway connection manager so fetchSessionList completes
-  var patched = false;
-  var patchInterval = setInterval(function () {
-    if (patched) { clearInterval(patchInterval); return; }
+  // Mock gateway connection manager
+  var patchPoll = setInterval(function () {
     var store = window.__STORE__;
     if (!store || !store.getState) return;
     var state = store.getState();
     if (!state || !state.sessionList || !state.sessionList.setConnectionManager) return;
-
-    patched = true;
-    clearInterval(patchInterval);
-
-    var mockConnection = {
-      action: function (params) {
-        if (params.action === 'conversations.list') {
-          return Promise.resolve({ ok: true, data: { conversations: [], has_more: false, total: 0 } });
-        }
-        return Promise.resolve({ ok: true, data: {} });
-      },
-      on: function () { },
-      off: function () { },
-      send: function () { return Promise.resolve(); },
-      getConnectionState: function () { return 'connected'; }
-    };
-
-    state.sessionList.setConnectionManager({ connection: mockConnection });
-    setTimeout(function () {
-      var s = store.getState();
-      if (s.sessionList.fetchSessionList) {
-        s.sessionList.fetchSessionList().catch(function () {});
-      }
-    }, 100);
+    clearInterval(patchPoll);
+    state.sessionList.setConnectionManager({ connection: {
+      action: function (p) { return Promise.resolve(p.action === 'conversations.list' ? { ok: true, data: { conversations: [], has_more: false, total: 0 } } : { ok: true, data: {} }); },
+      on: function () {}, off: function () {}, send: function () { return Promise.resolve(); }, getConnectionState: function () { return 'connected'; }
+    }});
+    setTimeout(function () { var s = store.getState(); if (s.sessionList.fetchSessionList) s.sessionList.fetchSessionList().catch(function () {}); }, 100);
   }, 200);
+  setTimeout(function () { clearInterval(patchPoll); }, 10000);
 
-  // 8. Office Control API — exposes window.__office once game is ready
-  var officeReady = false;
-  var officeInterval = setInterval(function () {
-    if (officeReady) { clearInterval(officeInterval); return; }
+  // __office API — mounted once game scene is ready
+  var officePoll = setInterval(function () {
     var game = window.__game;
     if (!game || !game.scene || !game.scene.agents || game.scene.agents.length === 0) return;
-
-    officeReady = true;
-    clearInterval(officeInterval);
+    clearInterval(officePoll);
 
     var scene = game.scene;
     var idleDecisionOriginal = null;
+    var taskCounter = 0;
 
     function findAgent(name) {
-      var a = scene.agents.find(function (a) { return a.agentName === name; });
-      if (!a) throw new Error('[__office] Agent not found: ' + name);
+      var a = scene.agents.find(function (a) { return a.agentName === name || a.agentType === name; });
+      if (!a) throw new Error('Agent not found: ' + name);
       return a;
     }
 
-    var taskCounter = 0;
-
     window.__office = {
-      // --- Query ---
       agents: function () {
         return scene.agents.map(function (a) {
-          return {
-            name: a.agentName,
-            type: a.agentType,
-            slot: a.slotIndex,
-            state: a._stateCategory,
-            subState: a._subState,
-            x: a._x, y: a._y,
-            gridCol: a._gridCol, gridRow: a._gridRow,
-            seatX: a.seatX, seatY: a.seatY,
-            isInWorkstation: a.isInWorkstation,
-            isMoving: typeof a.isMoving === 'function' ? a.isMoving() : !!a.path,
-            currentTask: a.currentTask ? true : false,
-            taskQueueLen: a.taskQueue ? a.taskQueue.length : 0,
-          };
+          return { name: a.agentName, type: a.agentType, slot: a.slotIndex,
+            state: a._stateCategory, subState: a._subState, x: a._x, y: a._y,
+            gridCol: a._gridCol, gridRow: a._gridRow, seatX: a.seatX, seatY: a.seatY,
+            isInWorkstation: a.isInWorkstation, isMoving: !a._arrived && a.path && a.path.length > 0,
+            currentTask: !!a.currentTask, taskQueueLen: a.taskQueue ? a.taskQueue.length : 0 };
         });
       },
-
       getAgent: function (name) { return findAgent(name); },
 
-      // --- Movement ---
       moveTo: function (name, x, y) {
         var agent = findAgent(name);
-        var from = { x: agent._x, y: agent._y };
-        var to = { x: x, y: y };
-        var path = scene.pathfinding.findPath(from, to, agent.agentType);
-        if (!path || path.length === 0) {
-          console.warn('[__office] No path found from', from, 'to', to);
-          return false;
-        }
+        var path = scene.pathfinding.findPath({ x: agent._x, y: agent._y }, { x: x, y: y }, agent.agentType);
+        if (!path || !path.length) return false;
+        agent.setStateCategory('IDLE', 'STANDBY');
+        agent.isInWorkstation = false;
         agent.setPath(path);
-        agent.followPath();
         return true;
       },
+      teleport: function (name, x, y) { findAgent(name).teleportTo(x, y); },
 
-      teleport: function (name, x, y) {
-        var agent = findAgent(name);
-        agent.teleportTo(x, y);
-      },
-
-      // --- Animation / State ---
       setState: function (name, subState) {
         var agent = findAgent(name);
         if (agent._stateCategory === 'OFFSTAGE') {
@@ -374,84 +205,202 @@
         agent.setStateCategory('IDLE', subState);
         agent.playSubStateAnim(subState.toLowerCase(), true);
       },
+      playAnim: function (name, anim, loop) { findAgent(name).playSubStateAnim(anim, loop !== false); },
+      stopAnim: function (name) { findAgent(name).stopSubStateAnim(); },
 
-      playAnim: function (name, anim, loop) {
-        var agent = findAgent(name);
-        agent.playSubStateAnim(anim, loop !== false);
-      },
-
-      stopAnim: function (name) {
-        var agent = findAgent(name);
-        agent.stopSubStateAnim();
-      },
-
-      // --- Bubble ---
       speak: function (name, text, durationMs) {
-        scene.bubbleSystem.speak(name, text, durationMs || 5000);
+        var agent = findAgent(name);
+        scene.bubbleSystem.speak(agent.agentType, text, durationMs || 5000);
       },
-
       stopSpeak: function (name) {
-        scene.bubbleSystem.stopSpeak(name);
+        var agent = findAgent(name);
+        scene.bubbleSystem.stopSpeak(agent.agentType);
       },
 
-      // --- Task lifecycle ---
       dispatch: function (sender, receiver, taskId, message) {
         var id = taskId || 'task-' + (++taskCounter);
         var convId = 'conv-' + Date.now();
-        game.execute({
-          id: id,
-          conversationId: convId,
-          sender: sender,
-          receiver: receiver,
-          action: 'DISPATCH',
-          message: { role: 'system', content: message || '派发任务给 ' + receiver }
-        });
+        game.execute({ id: id, conversationId: convId, sender: sender, receiver: receiver, action: 'DISPATCH', message: { role: 'system', content: message || '派发任务给 ' + receiver } });
         return { id: id, conversationId: convId };
       },
-
       start: function (agentName, taskId, message) {
-        var convId = 'conv-' + Date.now();
-        game.execute({
-          id: taskId || 'task-' + (++taskCounter),
-          conversationId: convId,
-          sender: agentName,
-          action: 'START',
-          message: { role: 'system', content: message || agentName + ' 开始执行' }
-        });
+        game.execute({ id: taskId || 'task-' + (++taskCounter), conversationId: 'conv-' + Date.now(), sender: agentName, action: 'START', message: { role: 'system', content: message || agentName + ' 开始执行' } });
       },
+      complete: function (taskId) { game.execute({ id: taskId, action: 'COMPLETE' }); },
 
-      complete: function (taskId) {
-        game.execute({
-          id: taskId,
-          action: 'COMPLETE'
-        });
-      },
-
-      // --- Idle behavior control ---
       pauseIdle: function () {
         var idle = scene.taskSystem.idleDecision;
-        if (!idleDecisionOriginal) {
-          idleDecisionOriginal = idle.canRunDecision.bind(idle);
-        }
+        if (!idleDecisionOriginal) idleDecisionOriginal = idle.canRunDecision.bind(idle);
         idle.canRunDecision = function () { return false; };
-        logBypass('idle decisions paused');
+      },
+      resumeIdle: function () {
+        if (idleDecisionOriginal) { scene.taskSystem.idleDecision.canRunDecision = idleDecisionOriginal; idleDecisionOriginal = null; }
       },
 
-      resumeIdle: function () {
-        if (idleDecisionOriginal) {
-          scene.taskSystem.idleDecision.canRunDecision = idleDecisionOriginal;
-          idleDecisionOriginal = null;
-          logBypass('idle decisions resumed');
+      // Name label control
+      hideNames: function () {
+        var nls = scene.nameLabelSystem;
+        nls.labels.forEach(function (label) { label.root.visible = false; });
+        if (!nls._origSync) nls._origSync = nls.sync.bind(nls);
+        nls.sync = function (e, n, r, i) {
+          nls._origSync(e, n, r, i);
+          var lbl = nls.labels.get(e.agentType);
+          if (lbl) lbl.root.visible = false;
+        };
+        nls._namesHidden = true;
+      },
+      showNames: function () {
+        var nls = scene.nameLabelSystem;
+        if (nls._origSync) { nls.sync = nls._origSync; nls._origSync = null; }
+        nls._namesHidden = false;
+        nls.labels.forEach(function (label) { label.root.visible = true; });
+      },
+      setName: function (name, newText, opts) {
+        var agent = findAgent(name);
+        var nls = scene.nameLabelSystem;
+        var label = nls.labels.get(agent.agentType);
+        if (label) label.nameSprite.visible = false;
+
+        opts = opts || {};
+        var fontSize = opts.fontSize || '12px';
+        var color = opts.color || '#FFFFFF';
+        var host = game.app.canvas.parentElement;
+        if (!host) return;
+
+        var existingEl = host.querySelector('[data-name-label="' + agent.agentType + '"]');
+        if (existingEl) existingEl.remove();
+
+        var el = document.createElement('div');
+        el.dataset.nameLabel = agent.agentType;
+        el.textContent = newText;
+        el.style.cssText = 'position:absolute;left:0;top:0;pointer-events:none;z-index:90;' +
+          'font-size:' + fontSize + ';color:' + color + ';font-weight:bold;' +
+          'text-shadow:0 1px 2px rgba(0,0,0,0.8);white-space:nowrap;transform-origin:bottom center';
+        host.appendChild(el);
+
+        if (!nls._customLabels) nls._customLabels = {};
+        nls._customLabels[agent.agentType] = el;
+
+        if (!nls._customSync) {
+          var baseSyncFn = nls._origSync || nls.sync.bind(nls);
+          nls._origSync = baseSyncFn;
+          nls.sync = function (e, n, r, i) {
+            baseSyncFn(e, n, r, i);
+            var custom = nls._customLabels && nls._customLabels[e.agentType];
+            if (custom) {
+              var lbl = nls.labels.get(e.agentType);
+              if (lbl) lbl.nameSprite.visible = false;
+              var visible = e.displayContainer.visible && e.subState !== 'ENTERING';
+              if (nls._namesHidden && lbl) lbl.root.visible = false;
+              custom.style.display = visible ? '' : 'none';
+              if (visible) {
+                var canvas = game.app.canvas;
+                var host = canvas.parentElement;
+                var canvasRect = canvas.getBoundingClientRect();
+                var hostRect = host.getBoundingClientRect();
+                var cam = { x: -40, y: 20 };
+                var worldX = r ? r.x : e._x;
+                var worldY = (r ? r.y : e._y) - 64;
+                var cx = worldX - cam.x;
+                var cy = worldY - cam.y;
+                var sx = canvasRect.width / game.canvasWidth;
+                var sy = canvasRect.height / game.canvasHeight;
+                var fx = (canvasRect.left - hostRect.left) + cx * sx;
+                var fy = (canvasRect.top - hostRect.top) + cy * sy;
+                custom.style.transform = 'translate(' + fx + 'px,' + fy + 'px) translate(-50%,-100%)';
+              }
+            }
+          };
+          nls._customSync = true;
+        }
+      },
+      clearName: function (name) {
+        var agent = findAgent(name);
+        var nls = scene.nameLabelSystem;
+        var label = nls.labels.get(agent.agentType);
+        if (label) label.nameSprite.visible = true;
+        if (nls._customLabels && nls._customLabels[agent.agentType]) {
+          nls._customLabels[agent.agentType].remove();
+          delete nls._customLabels[agent.agentType];
         }
       },
 
-      // --- Raw references ---
+      // Diagnostics: list active interval count or force-clear stale timers
+      clearTimers: function () {
+        var count = _intervals.length;
+        _intervals.forEach(function (id) { clearInterval(id); });
+        _intervals = [];
+        return count;
+      },
+
       get scene() { return scene; },
-      get game() { return game; },
+      get game() { return game; }
     };
 
-    logBypass('__office API ready (' + scene.agents.length + ' agents)');
-  }, 300);
+    // Cleanup: clear all non-essential intervals (analytics, heartbeats, beacon, etc.)
+    // PixiJS render loop uses requestAnimationFrame, not setInterval
+    setTimeout(function () {
+      var count = _intervals.length;
+      _intervals.forEach(function (id) { clearInterval(id); });
+      _intervals = [];
+      window.setInterval = _origSetInterval;
+      console.log('[bypass] cleared ' + count + ' stale intervals');
+    }, 2000);
 
-  logBypass('ok');
+    console.log('[bypass] __office API ready (' + scene.agents.length + ' agents)');
+  }, 300);
+  setTimeout(function () { clearInterval(officePoll); }, 30000);
+
+  // __chat API — token consumption & conversation access via Zustand store
+  var chatPoll = setInterval(function () {
+    var store = window.__STORE__;
+    if (!store || !store.getState) return;
+    var state = store.getState();
+    if (!state || !state.sessionList) return;
+    clearInterval(chatPoll);
+
+    window.__chat = {
+      // Token consumption
+      tokens: function () {
+        var sl = store.getState().sessionList;
+        return { tokenMap: sl.tokenMap, tokenSavedMap: sl.tokenSavedMap, wallet: sl.wallet };
+      },
+      tokenFor: function (conversationId) {
+        var sl = store.getState().sessionList;
+        return { total: sl.tokenMap[conversationId] || 0, saved: sl.tokenSavedMap[conversationId] || 0 };
+      },
+      wallet: function () { return store.getState().sessionList.wallet; },
+
+      // Session list
+      sessions: function () { return store.getState().sessionList.sessions; },
+      sessionPagination: function () { return store.getState().sessionList.pagination; },
+
+      // Conversations (active, with messages)
+      conversation: function (id) {
+        var conv = store.getState().conversations.conversations[id];
+        if (!conv) return null;
+        return { messages: conv.messages, isRunning: conv.isRunning, isHistoryLoaded: conv.isHistoryLoaded, hasMoreHistory: conv.hasMoreHistory };
+      },
+      conversationIds: function () { return Object.keys(store.getState().conversations.conversations); },
+
+      // Actions
+      fetchAllTokenUsage: function () { return store.getState().sessionList.fetchAllTokenUsage(); },
+      fetchTokenUsage: function (id) { return store.getState().sessionList.fetchTokenUsageForConversation(id); },
+      fetchWallet: function () { return store.getState().sessionList.fetchWallet(); },
+      fetchSessionList: function (updatedAfter) { return store.getState().sessionList.fetchSessionList(updatedAfter); },
+      ensureConversation: function (id) { store.getState().conversations.ensureConversation(id); },
+      loadHistory: function (id, limit) { return store.getState().conversations.loadHistory(id, limit || 50); },
+
+      // Store subscribe (returns unsubscribe function)
+      subscribe: function (fn) { return store.subscribe(fn); },
+
+      // Raw store reference
+      get store() { return store; }
+    };
+
+    console.log('[bypass] __chat API ready');
+  }, 300);
+  setTimeout(function () { clearInterval(chatPoll); }, 30000);
+
+  console.log('[bypass] initialized');
 })();

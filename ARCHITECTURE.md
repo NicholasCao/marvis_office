@@ -121,6 +121,7 @@ index-wSLjxAso.js
 | 6 | WebSocket 模拟 | 阻止 WebSocket 连接错误 |
 | 7 | Gateway 连接 | Mock connectionManager 使 sessionList 初始化完成 |
 | **8** | **`__office` API** | **Agent 控制接口（见下方）** |
+| **9** | **`__chat` API** | **Token 消耗 & 对话数据接口** |
 
 ## `window.__office` API
 
@@ -180,6 +181,50 @@ __office.scene   // PixiJS 场景对象
 __office.game    // 游戏引擎对象
 ```
 
+## `window.__chat` API
+
+Store 就绪后自动挂载，提供 Token 消耗查询和对话数据访问。底层通过 Zustand store (`window.__STORE__`) 读取数据。
+
+### Token 消耗
+
+```js
+__chat.tokens()           // → { tokenMap, tokenSavedMap, wallet }
+__chat.tokenFor(id)       // → { total: number, saved: number }
+__chat.wallet()           // → { uid, totalTokens, usedTokens, frozenTokens, remainingTokens, totalCost, status, savedTokens } | null
+```
+
+### 会话列表
+
+```js
+__chat.sessions()           // → [{id, title, status, createdAt, updatedAt, messageCount, lastMessagePreview}]
+__chat.sessionPagination()  // → { hasMore, nextCursor, total }
+```
+
+### 对话详情
+
+```js
+__chat.conversationIds()    // → 已加载的对话 ID 列表
+__chat.conversation(id)     // → { messages, isRunning, isHistoryLoaded, hasMoreHistory } | null
+```
+
+### 数据拉取
+
+```js
+__chat.fetchAllTokenUsage()           // 批量拉取所有会话 Token
+__chat.fetchTokenUsage(id)            // 单个会话 Token
+__chat.fetchWallet()                  // 钱包余额
+__chat.fetchSessionList(updatedAfter) // 会话列表
+__chat.ensureConversation(id)         // 确保对话实例
+__chat.loadHistory(id, limit)         // 加载历史消息
+```
+
+### 订阅 & 原始引用
+
+```js
+var unsub = __chat.subscribe(fn)  // 订阅 store 变更
+__chat.store                      // Zustand store 原始对象
+```
+
 ## Agent 系统
 
 ### 内置 Agent（6个）
@@ -221,12 +266,38 @@ standby, working, sleeping, slacking (peek), pooping, running_treadmill, talking
 | KTX 解码器 | 0.9MB | 1% |
 | **总计** | **~62MB** | |
 
+### 已完成的精简
+
+1. **bypass.js 重写**：从 457 行精简到 160 行，增加定时器清理机制
+2. **index.html 精简**：移除冗余的 runtime 检测脚本
+3. **主 Bundle 瘦身**（14.16MB → 13.03MB，节省 1.1MB）：
+   - 移除两份 85KB Unicode 正则（JS 解析器用，office 不需要）— 节省 170KB
+   - 移除 Prism.js 代码高亮 + 10 种语言语法 — 节省 116KB
+   - 清空 CSS-in-JS 内联字符串（非 office UI 组件样式）— 节省 48KB
+   - 替换 4 个大型内联正则表达式为简单等价物 — 节省 24KB
+   - 替换重复的 acorn JS 解析器副本为引用第一份 — 节省 193KB
+   - 替换 Beacon/Analytics 数据上报 SDK（F2t）为 Proxy 桩 — 节省 273KB
+   - 替换 Aegis 遥测 SDK（YUt）为无操作桩 — 节省 300KB
+4. **懒加载模块清空**：`index-CvPpuPlD.js`（1MB）替换为空导出 — 节省 1MB
+5. **定时器清理**：bypass.js 在场景就绪后自动清除所有非必要 setInterval（analytics、heartbeat 等）
+
+**总 JS 精简：2.1MB**（主 Bundle 1.1MB + 懒加载 1MB）
+
 ### 进一步精简方向
 
 1. **CSS 精简**：`index-DLJb5NgS.css`（2.4MB）包含大量非办公室的 UI 样式，可提取仅需的部分
-2. **主 Bundle 瘦身**：`index-wSLjxAso.js`（14MB）包含完整应用逻辑（聊天、设置、文件管理等），办公室场景仅需其中一部分
+2. **主 Bundle 继续瘦身**：仍含聊天 UI、文件管理、Semi Design 组件库等非 office 代码，但由于 minified 模块间相互引用深度耦合，继续精简风险较高
 3. **精灵表优化**：`_scarf` 变体和 `@2x` 可按需裁剪；48种动画可精简到常用的十几种
 4. **KTX2 纹理**：如不需要 GPU 压缩纹理，可删除 `.ktx2` 文件和 transcoders（省 ~2MB）
+
+### Agent 随机行为决策系统
+
+`IdleDecision` 类控制 agent 的空闲行为：
+- 每个行为持续 180 秒
+- 到期后从候选列表（sleep/slacking/talk/treadmill/toilet）中随机选一个（排除上次行为）
+- 在场 agent > 3 时有 50% 概率直接离场，≤ 3 时不离场
+- talk 是成对行为，含寻路 + 面对面动画 + 气泡对话
+- 资源互斥：跑步机和马桶各只有 1 个位置，sleeping 和 slacking 全场各限 1 个
 
 ## 启动方式
 
