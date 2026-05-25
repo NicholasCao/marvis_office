@@ -33,9 +33,9 @@ Agent 的 `type` 必须使用以下 6 个内置值之一，**不能自定义新 
 | `name` | 显示名称 | 完全自由，任意中英文 |
 | `color` | 围巾颜色 | 完全自由，0xRRGGBB 格式 |
 | `description` | 描述文本 | 完全自由 |
-| 数量 | Agent 总数 | 1~6 个，至少需要 1 个 type="main" |
+| 数量 | Agent 总数 | 1~8 个，至少需要 1 个 type="main" |
 
-### Demo：3 个自定义名称的 Agent
+### Demo：8 个自定义名称的 Agent
 
 `custom.html`（已包含在项目中，直接打开 `http://localhost:5175/custom.html`）：
 
@@ -50,18 +50,26 @@ Agent 的 `type` 必须使用以下 6 个内置值之一，**不能自定义新 
     window.__RUNTIME_FRAMEWORK__ = 'browser';
     window.__RUNTIME_OS__ = 'macos';
 
-    // ① Agent 列表：type 必须用内置值，name/color 自由设置
+    // ① Agent 列表：type 必须用内置值，name/color 自由设置（最多 8 个）
     window.__OFFICE_AGENTS = [
       { name: "队长",  type: "main",           description: "项目总指挥", color: 0xFF6600 },
       { name: "前端",  type: "Browser Agent",  description: "前端开发",   color: 0x00AAFF },
-      { name: "后端",  type: "Computer Agent", description: "后端开发",   color: 0x66FF00 }
+      { name: "后端",  type: "Computer Agent", description: "后端开发",   color: 0x66FF00 },
+      { name: "运维",  type: "App Agent",      description: "运维部署",   color: 0xFF00FF },
+      { name: "测试",  type: "File Agent",     description: "质量保障",   color: 0xFFFF00 },
+      { name: "数据",  type: "Search Agent",   description: "数据分析",   color: 0x00FFCC },
+      { name: "设计",  type: "Browser Agent",  description: "UI/UX 设计", color: 0xFF8800 },
+      { name: "产品",  type: "App Agent",      description: "产品经理",   color: 0x8866FF }
     ];
 
     // ② 点击 Agent 弹出的卡片（key 用 type 值，main 的 key 特殊为 "Main Agent"）
     window.__AGENT_CARDS = {
-      "Main Agent":     { name: "队长", subtitle: "Leader",       description: "负责任务分发", skills: ["架构设计", "代码审查"] },
-      "Browser Agent":  { name: "前端", subtitle: "Frontend",     description: "UI 开发",     skills: ["React", "CSS"] },
-      "Computer Agent": { name: "后端", subtitle: "Backend",      description: "API 开发",    skills: ["Node.js", "SQL"] }
+      "Main Agent":      { name: "队长", subtitle: "Leader",   description: "负责任务分发", skills: ["架构设计", "代码审查"] },
+      "Browser Agent":   { name: "前端", subtitle: "Frontend", description: "UI 开发",     skills: ["React", "CSS"] },
+      "Computer Agent":  { name: "后端", subtitle: "Backend",  description: "API 开发",    skills: ["Node.js", "SQL"] },
+      "App Agent":       { name: "运维", subtitle: "DevOps",   description: "CI/CD 管理",  skills: ["Docker", "K8s"] },
+      "File Agent":      { name: "测试", subtitle: "QA",       description: "自动化测试",   skills: ["Jest", "Cypress"] },
+      "Search Agent":    { name: "数据", subtitle: "Data",     description: "数据分析",     skills: ["Python", "SQL"] }
     };
   </script>
   <script src="./bypass.js"></script>

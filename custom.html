@@ -8,18 +8,26 @@
     window.__RUNTIME_FRAMEWORK__ = 'browser';
     window.__RUNTIME_OS__ = 'macos';
 
-    // 自定义 Agent 列表（必须在 bypass.js 之前）
+    // 自定义 Agent 列表（最多 8 个，必须在 bypass.js 之前）
     window.__OFFICE_AGENTS = [
-      { name: "队长",    type: "main",           description: "项目总指挥", color: 0xFF6600 },
-      { name: "前端",    type: "Browser Agent",  description: "前端开发",   color: 0x00AAFF },
-      { name: "后端",    type: "Computer Agent", description: "后端开发",   color: 0x66FF00 }
+      { name: "队长",    type: "main",           description: "项目总指挥",   color: 0xFF6600 },
+      { name: "前端",    type: "Browser Agent",  description: "前端开发",     color: 0x00AAFF },
+      { name: "后端",    type: "Computer Agent", description: "后端开发",     color: 0x66FF00 },
+      { name: "运维",    type: "App Agent",      description: "运维部署",     color: 0xFF00FF },
+      { name: "测试",    type: "File Agent",     description: "质量保障",     color: 0xFFFF00 },
+      { name: "数据",    type: "Search Agent",   description: "数据分析",     color: 0x00FFCC },
+      { name: "设计",    type: "Browser Agent",  description: "UI/UX 设计",   color: 0xFF8800 },
+      { name: "产品",    type: "App Agent",      description: "产品经理",     color: 0x8866FF }
     ];
 
     // 自定义点击 Agent 弹出的卡片信息
     window.__AGENT_CARDS = {
       "Main Agent":      { name: "队长", subtitle: "Project Leader", description: "全栈架构师，负责任务分发和代码审查", skills: ["任务分派", "代码审查", "架构设计"] },
       "Browser Agent":   { name: "前端", subtitle: "Frontend Dev",   description: "精通 React/Vue，负责 UI 开发",   skills: ["React", "CSS", "TypeScript"] },
-      "Computer Agent":  { name: "后端", subtitle: "Backend Dev",    description: "负责 API 和数据库",              skills: ["Node.js", "PostgreSQL", "Redis"] }
+      "Computer Agent":  { name: "后端", subtitle: "Backend Dev",    description: "负责 API 和数据库",              skills: ["Node.js", "PostgreSQL", "Redis"] },
+      "App Agent":       { name: "运维", subtitle: "DevOps",         description: "CI/CD 与服务器管理",             skills: ["Docker", "K8s", "Linux"] },
+      "File Agent":      { name: "测试", subtitle: "QA",             description: "自动化测试与质量保障",            skills: ["Selenium", "Jest", "Cypress"] },
+      "Search Agent":    { name: "数据", subtitle: "Data",           description: "数据分析与可视化",               skills: ["Python", "SQL", "Tableau"] }
     };
   </script>
   <script src="./bypass.js"></script>
